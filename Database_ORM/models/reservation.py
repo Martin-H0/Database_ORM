@@ -2,8 +2,8 @@
 from database.generic_mapper import GenericMapper
 
 class ReservationMapper(GenericMapper):
-    def __init__(self, db):
-        super().__init__(db, "reservation")
+    def __init__(self):
+        super().__init__("reservation")
         # Cizí klíč: customer_id -> customer
 
     def create(self, data: dict):

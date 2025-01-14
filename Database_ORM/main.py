@@ -9,6 +9,7 @@ from models.room import RoomMapper
 from models.reservation import ReservationMapper
 from models.payment import PaymentMapper
 from models.reservation_room import ReservationRoomMapper
+from report.view_customer_points import ViewCustomerPointsMapper
 
 def main():
     # 1) Vytvoříme (resp. získáme) instanci DB singletonu
@@ -17,11 +18,13 @@ def main():
 
     # 2) Vytvoříme mappery
     customer_mapper = CustomerMapper()    #db
-    # ph_mapper = PointsHistoryMapper()
-    # room_mapper = RoomMapper()
-    # reservation_mapper = ReservationMapper()
-    # payment_mapper = PaymentMapper()
-    # resroom_mapper = ReservationRoomMapper()
+    ph_mapper = PointsHistoryMapper()
+    room_mapper = RoomMapper()
+    reservation_mapper = ReservationMapper()
+    payment_mapper = PaymentMapper()
+    resroom_mapper = ReservationRoomMapper()
+
+    viev_cospoint_mapper = ViewCustomerPointsMapper()
 
     # 3) Ukázka CRUD (např. na customer)
     new_cust_id = customer_mapper.create({
@@ -53,8 +56,8 @@ def main():
 
 
     # 6) DELETE (pokud chcete vyzkoušet)
-    # del_rows = customer_mapper.delete(new_cust_id)
-    # print("[DELETE] Deleted rows (customer):", del_rows)
+    del_rows = customer_mapper.delete(new_cust_id)
+    print("[DELETE] Deleted rows (customer):", del_rows)
 
     # 7) Vyzkoušíme cizí klíč (např. points_history) => customer_id musí existovat
     # ph_id = ph_mapper.create({

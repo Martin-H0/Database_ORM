@@ -2,8 +2,8 @@
 from database.generic_mapper import GenericMapper
 
 class PaymentMapper(GenericMapper):
-    def __init__(self, db):
-        super().__init__(db, "payment")
+    def __init__(self):
+        super().__init__( "payment")
         # FK: reservation_id -> reservation
 
     def create(self, data: dict):

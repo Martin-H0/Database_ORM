@@ -2,8 +2,8 @@
 from database.generic_mapper import GenericMapper
 
 class PointsHistoryMapper(GenericMapper):
-    def __init__(self, db):
-        super().__init__(db, "points_history")
+    def __init__(self):
+        super().__init__( "points_history")
         # Cizí klíč: customer_id -> customer
 
     def create(self, data: dict):

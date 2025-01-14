@@ -2,8 +2,8 @@
 from database.generic_mapper import GenericMapper
 
 class RoomMapper(GenericMapper):
-    def __init__(self, db):
-        super().__init__(db, "room")
+    def __init__(self):
+        super().__init__( "room")
         # Nemáme FK, jen PK
 
     def update(self, record_id: int, data: dict):

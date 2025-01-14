@@ -2,8 +2,8 @@
 from database.generic_mapper import GenericMapper
 
 class ReservationRoomMapper(GenericMapper):
-    def __init__(self, db):
-        super().__init__(db, "reservation_room")
+    def __init__(self):
+        super().__init__("reservation_room")
         # FK: reservation_id -> reservation, room_id -> room
 
     def create(self, data: dict):
