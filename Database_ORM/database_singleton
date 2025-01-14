@@ -1,0 +1,53 @@
+import mysql.connector
+import json
+
+class DatabaseSingleton:
+    conn = None
+
+    def __new__(cls):
+        if not cls.conn:
+            cls.new_conn()
+        return cls.conn
+    
+    @classmethod
+    def new_conn(cls):
+        connection = mysql.connector.connect(
+        host=cls.readconfig("host"),
+        port=cls.readconfig("port"),
+        user=cls.readconfig("user"),
+        password=cls.readconfig("password"),
+        database=cls.readconfig("database"),
+        )
+        cls.conn = connection
+    
+    @classmethod
+    def close_conn(cls):
+        if(cls.conn):
+            cls.conn.close()
+            cls.conn = None
+
+    @classmethod
+    def readconfig(cls,key):
+        with open("./Database_ORM/config.json","r") as f:
+            config = json.load(f)
+            return config["database"][key]
+    
+    
+    def get_table_columns(self, table_name: str):
+        """
+        Vykoná DESCRIBE table_name a vrátí list tuple (col_name, col_type).
+        """
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute(f"DESCRIBE {table_name}")
+        columns = []
+        for col_name, col_type, _, _, _, _ in cursor.fetchall():
+            columns.append((col_name, col_type))
+        cursor.close()
+        return columns
+
+
+
+conn = DatabaseSingleton.new_conn()
+DatabaseSingleton.close_conn()
+print("Konec")
