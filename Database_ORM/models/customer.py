@@ -2,8 +2,8 @@
 from database.generic_mapper import GenericMapper
 
 class CustomerMapper(GenericMapper):
-    def __init__(self, db):
-        super().__init__(db, "customer")
+    def __init__(self):    # self, db
+        super().__init__("customer")  # db, "customer"
         # Nemáme cizí klíče, jen PK = id
 
     def update(self, record_id: int, data: dict):

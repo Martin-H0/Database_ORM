@@ -1,19 +1,31 @@
 import re
 from datetime import datetime
+from database_singleton import* 
 
 class GenericMapper:
-    def __init__(self, db, table_name: str):
+    def __init__(self, table_name: str):
         """
         db: instance DatabaseSingleton
         table_name: např. 'customer', 'room', ...
         """
-        self.db = db
+        # self.db = db
         self.table_name = table_name
         self.columns_info = []
         self.fetch_columns()
+    
+    def get_table_columns(self, table_name: str):
+        conn = DatabaseSingleton()
+        cursor = conn.cursor()
+        cursor.execute(f"DESCRIBE {table_name}")
+        columns = []
+        for i in cursor.fetchall():
+            columns.append((i[0],i[1]))
+        DatabaseSingleton.close_conn()
+        return columns
 
     def fetch_columns(self):
-        self.columns_info = self.db.get_table_columns(self.table_name)
+
+        self.columns_info = self.get_table_columns(self.table_name)
 
     def _mysql_type_to_python(self, mysql_type: str):
         mysql_type_lower = mysql_type.lower()
@@ -57,11 +69,11 @@ class GenericMapper:
         Ověří, zda v tabulce existuje záznam s daným ID.
         Vrací True/False.
         """
-        conn = self.db.get_connection()
+        conn = DatabaseSingleton()
         cursor = conn.cursor()
         cursor.execute(f"SELECT COUNT(*) FROM {table_name} WHERE id = %s", (record_id,))
         (count,) = cursor.fetchone()
-        cursor.close()
+        DatabaseSingleton.close_conn()
         return (count > 0)
 
     def create(self, data: dict):
@@ -81,12 +93,12 @@ class GenericMapper:
                 col_values.append(value_sql_str)
 
         sql = f"INSERT INTO {self.table_name} ({', '.join(col_names)}) VALUES ({', '.join(col_values)})"
-        conn = self.db.get_connection()
+        conn = DatabaseSingleton()
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
         new_id = cursor.lastrowid
-        cursor.close()
+        DatabaseSingleton.close_conn()
         return new_id
 
     def read(self, record_id: int):
@@ -95,11 +107,11 @@ class GenericMapper:
         Pokud záznam neexistuje, vrátí None.
         """
         sql = f"SELECT * FROM {self.table_name} WHERE id = %s"
-        conn = self.db.get_connection()
+        conn = DatabaseSingleton()
         cursor = conn.cursor(dictionary=True)
         cursor.execute(sql, (record_id,))
         result = cursor.fetchone()
-        cursor.close()
+        DatabaseSingleton.close_conn()
         return result
 
     def update(self, record_id: int, data: dict):
@@ -120,12 +132,12 @@ class GenericMapper:
             return 0  # nic k update
 
         sql = f"UPDATE {self.table_name} SET {', '.join(set_parts)} WHERE id = %s"
-        conn = self.db.get_connection()
+        conn = DatabaseSingleton()
         cursor = conn.cursor()
         cursor.execute(sql, (record_id,))
         conn.commit()
         affected_rows = cursor.rowcount
-        cursor.close()
+        DatabaseSingleton.close_conn()
         return affected_rows
 
     def delete(self, record_id: int):
@@ -134,12 +146,12 @@ class GenericMapper:
         Vrátí počet smazaných řádků (0 nebo 1).
         """
         sql = f"DELETE FROM {self.table_name} WHERE id = %s"
-        conn = self.db.get_connection()
+        conn = DatabaseSingleton()
         cursor = conn.cursor()
         cursor.execute(sql, (record_id,))
         conn.commit()
         affected_rows = cursor.rowcount
-        cursor.close()
+        DatabaseSingleton.close_conn()
         return affected_rows
 
 
