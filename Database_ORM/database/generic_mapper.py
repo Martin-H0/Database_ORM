@@ -113,6 +113,20 @@ class GenericMapper:
         result = cursor.fetchone()
         DatabaseSingleton.close_conn()
         return result
+    
+
+    def read_all(self):
+        """
+        SELECT * FROM table.
+        Pokud záznam neexistuje, vrátí None.
+        """
+        sql = f"SELECT * FROM {self.table_name}"
+        conn = DatabaseSingleton()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(sql,)
+        result = cursor.fetchall()
+        DatabaseSingleton.close_conn()
+        return result
 
     def update(self, record_id: int, data: dict):
         """
