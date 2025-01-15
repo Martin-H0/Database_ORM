@@ -38,4 +38,4 @@ class DatabaseSingleton:
 
 conn = DatabaseSingleton.new_conn()
 DatabaseSingleton.close_conn()
-print("Konec")
+#print("Konec")

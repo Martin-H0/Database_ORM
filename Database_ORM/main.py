@@ -12,6 +12,7 @@ from models.reservation_room import ReservationRoomMapper
 from report.view_customer_points import ViewCustomerPointsMapper
 from report.view_reservation_details import ViewReservationDetailsMapper
 from report.view_invoice_summary import ViewInvoiceSummaryMapper
+from database.procedure_mapper import ProcedureMapper
 
 def main():
     # 1) Vytvoříme (resp. získáme) instanci DB singletonu
@@ -26,9 +27,37 @@ def main():
     payment_mapper = PaymentMapper()
     resroom_mapper = ReservationRoomMapper()
 
-    viev_cospoint_mapper = ViewCustomerPointsMapper()
+    view_cospoint_mapper = ViewCustomerPointsMapper()
     view_resdetail_mapper = ViewReservationDetailsMapper()
     view_invsum_mapper = ViewInvoiceSummaryMapper()
+
+    procedure_maper = ProcedureMapper()
+
+       # 4) READ
+    
+    cust_data = view_cospoint_mapper.read_all()
+    for e in cust_data:
+        print (e)
+    cust_data = view_invsum_mapper.read_all()
+    for e in cust_data:
+        print (e)
+    cust_data = view_resdetail_mapper.read_all()
+    for e in cust_data:
+        print (e)
+
+    # # CALL p5evede od customera 1 100 bodu customerovi 2
+    # procedure_maper.call_transfer_points(1, 2, 100)
+
+    # # CALL Calculate total price  (input = id costumer)
+    # total_cost = procedure_maper.call_calculate_total_reservation_cost(4)
+    # print(f"Total cost: {total_cost}")
+
+    # CALL add payment  costumer id = 4, castka 2500, metoda CARD, body TRUE
+    procedure_maper.call_add_payment(4, 2500.0, 'CARD', True)
+
+
+
+
 
     # # 3) Ukázka CRUD (např. na customer)
     # new_cust_id = customer_mapper.create({
@@ -54,22 +83,6 @@ def main():
 
     # cust_data = customer_mapper.read(new_cust_id)
     # print("[READ] Loaded customer:", cust_data)
-
-       # 4) READ
-    
-    cust_data = viev_cospoint_mapper.read_all()
-    for e in cust_data:
-        print (e)
-    cust_data = view_invsum_mapper.read_all()
-    for e in cust_data:
-        print (e)
-    cust_data = view_resdetail_mapper.read_all()
-    for e in cust_data:
-        print (e)
-
-
-
-
 
     # # 6) DELETE (pokud chcete vyzkoušet)
     # del_rows = customer_mapper.delete(new_cust_id)

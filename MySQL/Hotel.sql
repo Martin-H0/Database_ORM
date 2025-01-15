@@ -109,14 +109,16 @@ FROM payment p
 DELIMITER //
 CREATE PROCEDURE proc_transfer_points(IN _from_id int,IN _to_id int,IN _ammount int)
 BEGIN
+	-- Odečte body dárci
     UPDATE customer 
     SET loyalty_points = loyalty_points-_ammount WHERE id = _from_id;
-    
+    -- Vytvoří záznam o odebrání bodů
     insert into points_history(customer_id,ammount,description) values(_from_id,-_ammount,'Převod');
     
+    -- Přidá body Adresátovy
     UPDATE customer 
     SET loyalty_points = loyalty_points+_ammount WHERE id = _to_id;
-    
+    -- Vytvoří záznam o přidání bodů
     insert into points_history(customer_id,ammount,description) values(_to_id,_ammount,'Převod');
 END //
 CALL proc_transfer_points(1, 50, 'Bonus za věrnost');
@@ -124,7 +126,6 @@ CALL proc_transfer_points(1, 50, 'Bonus za věrnost');
 
 
 DELIMITER $$
-
 CREATE PROCEDURE proc_calculate_total_reservation_cost(
     IN p_reservation_id INT
 )
@@ -143,11 +144,26 @@ CALL sp_calculate_total_reservation_cost(10);
 
 
 
-
-
-
 DELIMITER $$
+CREATE PROCEDURE sp_add_loyalty_points(
+    IN p_customer_id INT,
+    IN p_amount DECIMAL(10,2),
+    IN p_description VARCHAR(50)
+)
+BEGIN
+    -- Přidání bodů do sloupce loyalty_points
+    UPDATE customer
+    SET loyalty_points = loyalty_points + p_amount
+    WHERE id = p_customer_id;
 
+    -- Zapsání do historie bodů
+    INSERT INTO points_history (customer_id, ammount, description)
+    VALUES (p_customer_id, p_amount, p_description);
+
+    -- Zamezení návratu prázdného výsledku
+    DO 0;
+END $$
+DELIMITER $$
 CREATE PROCEDURE proc_add_payment(
     IN p_reservation_id INT,
     IN p_amount FLOAT,
@@ -171,9 +187,18 @@ BEGIN
         CALL sp_add_loyalty_points(v_customer_id, p_amount, 'Bonus za zaplacení');
     END IF;
     
+    -- Vrácení ID nově vytvořené platby
     SELECT LAST_INSERT_ID() AS new_payment_id;
 END $$
-CALL sp_add_payment(10, 2500, 'CARD', TRUE);
+
+
+
+
+
+
+
+
+
 
 
 
