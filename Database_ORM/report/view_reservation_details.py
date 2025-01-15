@@ -1,3 +1,4 @@
+# report/view_reservation_details.py
 from database.generic_mapper import GenericMapper
 
 class ViewReservationDetailsMapper(GenericMapper):

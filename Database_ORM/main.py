@@ -35,15 +35,15 @@ def main():
 
        # 4) READ
     
-    cust_data = view_cospoint_mapper.read_all()
-    for e in cust_data:
-        print (e)
-    cust_data = view_invsum_mapper.read_all()
-    for e in cust_data:
-        print (e)
-    cust_data = view_resdetail_mapper.read_all()
-    for e in cust_data:
-        print (e)
+    # cust_data = view_cospoint_mapper.read_all()
+    # for e in cust_data:
+    #     print (e)
+    # cust_data = view_invsum_mapper.read_all()
+    # for e in cust_data:
+    #     print (e)
+    # cust_data = view_resdetail_mapper.read_all()
+    # for e in cust_data:
+    #     print (e)
 
     # # CALL p5evede od customera 1 100 bodu customerovi 2
     # procedure_maper.call_transfer_points(1, 2, 100)
@@ -52,9 +52,8 @@ def main():
     # total_cost = procedure_maper.call_calculate_total_reservation_cost(4)
     # print(f"Total cost: {total_cost}")
 
-    # CALL add payment  costumer id = 4, castka 2500, metoda CARD, body TRUE
-    procedure_maper.call_add_payment(4, 2500.0, 'CARD', True)
-
+    # # CALL add payment  costumer id = 4, castka 2500, metoda CARD, body TRUE
+    # procedure_maper.call_add_payment(4, 2500.0, 'CARD', False)
 
 
 

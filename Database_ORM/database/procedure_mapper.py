@@ -1,3 +1,4 @@
+# database/procedure_mapper.py
 from database_singleton import DatabaseSingleton
 from database_singleton import* 
 
@@ -47,7 +48,7 @@ class ProcedureMapper:
         finally:
             cursor.close()  # Ensure cursor is closed
             DatabaseSingleton.close_conn()
-        return result['new_payment_id'] if result else None
+        # return result['new_payment_id'] if result else None
 
 
 

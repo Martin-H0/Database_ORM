@@ -1,3 +1,4 @@
+# report/view_invoice_summary.py
 from database.generic_mapper import GenericMapper
 
 class ViewInvoiceSummaryMapper(GenericMapper):

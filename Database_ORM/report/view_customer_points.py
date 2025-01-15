@@ -1,3 +1,4 @@
+# report/view_customer_points.py
 from database.generic_mapper import GenericMapper
 
 class ViewCustomerPointsMapper(GenericMapper):
