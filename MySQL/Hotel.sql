@@ -161,8 +161,10 @@ BEGIN
     VALUES (p_customer_id, p_amount, p_description);
 
     -- Zamezení návratu prázdného výsledku
-    DO 0;
+    -- DO 0;
 END $$
+
+
 DELIMITER $$
 CREATE PROCEDURE proc_add_payment(
     IN p_reservation_id INT,
@@ -188,7 +190,7 @@ BEGIN
     END IF;
     
     -- Vrácení ID nově vytvořené platby
-    SELECT LAST_INSERT_ID() AS new_payment_id;
+    -- SELECT LAST_INSERT_ID() AS new_payment_id;
 END $$
 
 

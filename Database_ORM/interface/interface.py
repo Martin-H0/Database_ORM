@@ -1,6 +1,12 @@
 # interface/interface.py
+from interface.customer_interface import CustomerInterface
+from interface.payment_interface import PaymentInterface
+from interface.points_history_interface import PointsHistoryInterface
+from interface.reservation_interface import ReservationInterface
+from interface.reservation_room_interface import ReservationRoomInterface
+from interface.room_interface import RoomInterface
 
-class ConsoleUserInterface:
+class MainInterface:
 
     def __init__(self,line_length):
         self.line_length = line_length
@@ -13,22 +19,15 @@ class ConsoleUserInterface:
         self.print_line()
         print(message)
 
-    # def new_task_input(self):
-    #     self.print_line()
-    #     new_task = None
-    #     while (new_task == None):
-    #         new_task = input("Zadejte nový úkol: ").strip()
-    #         if (len(new_task) < 1):
-    #             print("Neplatné zadání musíte zadat nějaký text")
-    #             new_task = None
-    #     return new_task
-
     def menu_input(self):
         commands = [
-            ("Vypsat seznam", self.application.show_task_list),
-            ("Přidat na seznam", self.application.add_task),
-            ("Smazat celý seznam", self.application.remove_task_list),
-            ("Ukončit program", self.application.terminate),
+            ('Customer', CustomerInterface(self.mappers['customer'])),
+            ('Room', RoomInterface(self.mappers['room'])),
+            ('Reservation', ReservationInterface(self.mappers['reservation'])),
+            ('Reservation_Room', RoomInterface(self.mappers['reservation_room'])),
+            ('Points_History', RoomInterface(self.mappers['points_history'])),
+            ('Payment', RoomInterface(self.mappers['payment'])),
+            ('Exit', None)
         ]
 
         self.print_line()
@@ -50,3 +49,38 @@ class ConsoleUserInterface:
                 choosen_num = None
 
         return commands[choosen_num - 1][1]
+
+
+
+
+    # def __init__(self):  #, mappers
+    #     # self.mappers = mappers
+    #     self.options = {
+            # '1': ('Customer', CustomerInterface(self.mappers['customer'])),
+            # '2': ('Room', RoomInterface(self.mappers['room'])),
+            # '3': ('Reservation', ReservationInterface(self.mappers['reservation'])),
+            # '4': ('Reservation_Room', RoomInterface(self.mappers['reservation_room'])),
+            # '5': ('Points_History', RoomInterface(self.mappers['points_history'])),
+            # '6': ('Payment', RoomInterface(self.mappers['payment'])),
+            # '0': ('Exit', None)
+    #     }
+
+    # def display_menu(self):
+    #     print("\n=== Main Interface ===")
+    #     for key, (name, _) in self.options.items():
+    #         print(f"{key}. {name}")
+
+    # def run(self):
+    #     while True:
+    #         self.display_menu()
+    #         choice = input("Vyberte možnost: ").strip()
+    #         if choice == '0':
+    #             print("Ukončuji program. Nashledanou!")
+    #             break
+    #         option = self.options.get(choice)
+    #         if option:
+    #             name, interface = option
+    #             if interface:
+    #                 interface.run()
+    #         else:
+    #             print("Neplatná volba. Zkuste to znovu.")
