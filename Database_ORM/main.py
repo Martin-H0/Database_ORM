@@ -12,13 +12,13 @@ from report.view_reservation_details import ViewReservationDetailsMapper
 from report.view_invoice_summary import ViewInvoiceSummaryMapper
 from database.procedure_mapper import ProcedureMapper
 
-from interface.interface import  MainInterface
+from interface import  Interface
 
 
 
 if __name__ == "__main__":
-    mi= MainInterface()
-    mi.run()
+    i = Interface()
+    i.run()
 
 
 
