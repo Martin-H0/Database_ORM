@@ -1,30 +1,53 @@
 import random, csv
-import random, datetime, decimal, threading
+import random, datetime, decimal, threading, email
 import json
 from database.generic_mapper import GenericMapper
 from models.customer import CustomerMapper
-from get_safe_value import*
+import get_safe_value
 import aplication_task
 
-class CustomerComander:
-    
-
-    
-    def __init__(self, model_command):
-        self.model_command = model_command
+class CustomerCommander:
+    customer_mapper = CustomerMapper()
+    def __init__(self):
+        # self.model_command = model_command
         self.generic_mapper = GenericMapper(self)
-
-    def print_line(self, mesage="default_mesage"):
-        print(mesage)
-
 
     def CreateCustomer(self):
         aplication_task.print_title("CreateCustomer")
         name = input("Enter customer name: ")
         try:
-            name = decimal.Decimal(name)
+            if(not get_safe_value.StringCheck(name)):
+                raise ValueError("Invalid name")
         except:
-            raise ValueError("Couldn't parse name as a decimal")
+            raise ValueError("Couldn't parse name")
+        Uemail = input("Enter customer name: ")
+        try:
+             email.Email(Uemail)
+        except:
+            raise ValueError("Couldn't parse email")
+        phone = input("Enter customer phone: ")
+        try:
+            if(not get_safe_value.NumberCheck(phone)):
+                raise ValueError("Invalid phone, phone mus be numbers")
+        except:
+            raise ValueError("Couldn't parse phone")
+        
+        # try:
+        #     new_cust_id = CustomerCommander.customer_mapper.create({
+        #     "name": name,
+        #     "email": email,
+        #     "phone": phone,
+        #     "is_vip": False,
+        #     "loyalty_points": 0.0
+        #     })
+        #     aplication_task.print_line(f"[CREATE] Customer with id={new_cust_id}")
+        # except:
+        #     raise ValueError("Couldn't Create new customer")
+
+
+
+
+
     def ReadCustomer(self):
         aplication_task.print_title("ReadCustomer")
     def UpdateCustomer(self):

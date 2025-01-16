@@ -1,5 +1,5 @@
 # src/Customer/costumer_interface.py
-from src.Customer.customer_comander import CustomerComander
+from src.Customer.customer_comander import CustomerCommander
 import aplication_task
 # from interface import MainInterface
 class CustomerInterface:
@@ -9,11 +9,11 @@ class CustomerInterface:
         self.commands = {}
         self.commands["help"] = self.menu_input
         self.commands["exit"] = self.exit
-        self.commands["create"] = CustomerComander().CreateCustomer
-        self.commands["read"] = CustomerComander().ReadCustomer
-        self.commands["update"] = CustomerComander().UpdateCustomer
-        self.commands["delete"] = CustomerComander().DeleteCustomer
-        self.commands["fromfile"] = CustomerComander().LoadCustomer
+        # self.commands["create"] = CustomerCommander().CreateCustomer
+        # self.commands["read"] = CustomerCommander().ReadCustomer
+        # self.commands["update"] = CustomerCommander().UpdateCustomer
+        # self.commands["delete"] = CustomerCommander().DeleteCustomer
+        # self.commands["fromfile"] = CustomerCommander().LoadCustomer
 
 
     def exit(self):

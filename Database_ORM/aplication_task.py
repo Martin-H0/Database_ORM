@@ -5,3 +5,6 @@ def print_title(title="default_title", symbol="=", line_length=60):
     print(symbol * line_length)
     print(title)
     print(symbol * line_length)
+
+def print_line( mesage="default_mesage"):
+    print(mesage)
