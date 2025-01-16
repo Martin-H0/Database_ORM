@@ -108,15 +108,15 @@ if __name__ == "__main__":
 
 
 
-#     # # 3) Ukázka CRUD (např. na customer)
-#     # new_cust_id = customer_mapper.create({
-#     #     "name": "Jane Doe",
-#     #     "email": "jane@example.com",
-#     #     "phone": "789654",
-#     #     "is_vip": True,
-#     #     "loyalty_points": 50.0
-#     # })
-#     # print(f"[CREATE] Customer with id={new_cust_id}")
+    # 3) Ukázka CRUD (např. na customer)
+    # new_cust_id = customer_mapper.create({
+    #     "name": "Jane Doe",
+    #     "email": "jane@example.com",
+    #     "phone": "789654",
+    #     "is_vip": True,
+    #     "loyalty_points": 50.0
+    # })
+    # print(f"[CREATE] Customer with id={new_cust_id}")
 
 
 #     # # 4) READ
