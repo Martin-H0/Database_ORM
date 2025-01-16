@@ -1,37 +1,39 @@
 # src/Customer/costumer_interface.py
 from src.Customer.customer_comander import CustomerComander
+import aplication_task
 # from interface import MainInterface
 class CustomerInterface:
     def __init__(self):
         self.isrunning = True
 
         self.commands = {}
+        self.commands["help"] = self.menu_input
         self.commands["exit"] = self.exit
-        # self.commands["customer"] = CustomerInterface().run()
-        # self.commands["room"] = bankinterface.BankInterface().start
-        # self.commands["reservation"] = accountinterface.AccountInterface().start
-        # self.commands["payment"] = transactioninterface.TransactionInterface().start
+        self.commands["create"] = CustomerComander().CreateCustomer
+        self.commands["read"] = CustomerComander().ReadCustomer
+        self.commands["update"] = CustomerComander().UpdateCustomer
+        self.commands["delete"] = CustomerComander().DeleteCustomer
+        self.commands["fromfile"] = CustomerComander().LoadCustomer
+
 
     def exit(self):
         self.isrunning = False
+
     def menu_input(self):
-        print("help: Display this")
-        print("exit: Exit")
-        print("customer: Manage customers")
-        print("room: Manage rooms")
-        print("reservation: Manage reservations")
-        print("payment: pay")
-        print("transaction: Manage reservation_room")
-        print("transaction: Manage LP points")
+        print("create: Create customer")
+        print("read: Read customer")
+        print("update: Update customer")
+        print("delete: Delete customer")
+        print("fromfile: Load customer from file")
+        print("exit: Back to Main Menu")
 
     def run(self):
         self.isrunning = True
-        self.print_line()
-        print("Welcome to ORM databse system")
+        aplication_task.print_title("Customer")
         self.menu_input()
         while self.isrunning:
             try:
-                cmd = input(": ")
+                cmd = input("customer: ")
                 if cmd in self.commands:
                     self.commands[cmd]()
                 else:
@@ -43,9 +45,8 @@ class CustomerInterface:
         print("EXIT")
 
         
-    def print_line(self, symbol="="):
-        """Slou69 pro v7pis odn2lovac9 48rz"""
-        print(symbol * 60)
+
+
 
     
 

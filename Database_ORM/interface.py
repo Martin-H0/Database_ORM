@@ -5,14 +5,15 @@ from src.Points_History.points_history_interface import PointsHistoryInterface
 from src.Reservation.reservation_interface import ReservationInterface
 from src.Reservation_Room.reservation_room_interface import ReservationRoomInterface
 from src.Room.room_interface import RoomInterface
-
+import aplication_task
 class Interface:
     def __init__(self):
         self.isrunning = True
 
         self.commands = {}
+        self.commands["help"] = self.menu_input
         self.commands["exit"] = self.exit
-        # self.commands["customer"] = CustomerInterface().run()
+        self.commands["customer"] = CustomerInterface().run
         # self.commands["room"] = bankinterface.BankInterface().start
         # self.commands["reservation"] = accountinterface.AccountInterface().start
         # self.commands["payment"] = transactioninterface.TransactionInterface().start
@@ -21,7 +22,6 @@ class Interface:
         self.isrunning = False
 
     def menu_input(self):
-        print("help: Display this")
         print("exit: Exit")
         print("customer: Manage customers")
         print("room: Manage rooms")
@@ -32,7 +32,7 @@ class Interface:
 
     def run(self):
         self.isrunning = True
-        self.print_title("Welcome to ORM databse system")
+        aplication_task.print_title("Welcome to ORM databse system")
         self.menu_input()
         while self.isrunning:
             try:
@@ -48,11 +48,7 @@ class Interface:
         print("EXIT")
 
         
-    def print_title(self, title="default_title", symbol="="):
-        """Slou69 pro v7pis odn2lovac9 48rz"""
-        print(symbol * 60)
-        print(title)
-        print(symbol * 60)
+
 
 
 
