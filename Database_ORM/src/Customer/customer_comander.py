@@ -20,7 +20,7 @@ class CustomerCommander:
                 raise ValueError("Invalid name")
         except:
             raise ValueError("Couldn't parse name")
-        Uemail = input("Enter customer name: ")
+        Uemail = input("Enter customer email: ")
         try:
              email.Email(Uemail)
         except:
@@ -32,17 +32,17 @@ class CustomerCommander:
         except:
             raise ValueError("Couldn't parse phone")
         
-        # try:
-        #     new_cust_id = CustomerCommander.customer_mapper.create({
-        #     "name": name,
-        #     "email": email,
-        #     "phone": phone,
-        #     "is_vip": False,
-        #     "loyalty_points": 0.0
-        #     })
-        #     aplication_task.print_line(f"[CREATE] Customer with id={new_cust_id}")
-        # except:
-        #     raise ValueError("Couldn't Create new customer")
+        try:
+            new_cust_id = CustomerCommander.customer_mapper.create({
+            "name": name,
+            "email": email,
+            "phone": phone,
+            "is_vip": False,
+            "loyalty_points": 0.0
+            })
+            aplication_task.print_line(f"[CREATE] Customer with id={new_cust_id}")
+        except:
+            raise ValueError("Couldn't Create new customer")
 
 
 

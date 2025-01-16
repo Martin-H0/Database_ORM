@@ -1,4 +1,8 @@
 # main.py
+import random, datetime, decimal, threading, email
+import aplication_task
+import get_safe_value
+
 
 from database_singleton import DatabaseSingleton
 from models.customer import CustomerMapper
@@ -15,7 +19,6 @@ from database.procedure_mapper import ProcedureMapper
 from interface import  Interface
 
 
-
 if __name__ == "__main__":
     i = Interface()
     i.run()
@@ -28,7 +31,44 @@ if __name__ == "__main__":
 #     # db.connect()  # Otevře spojení
 
 #     # 2) Vytvoříme mappery
-#     customer_mapper = CustomerMapper()    #db
+    # customer_mapper = CustomerMapper()    #db
+    
+    # aplication_task.print_title("CreateCustomer")
+    # name = input("Enter customer name: ")
+    # try:
+    #     if(not get_safe_value.StringCheck(name)):
+    #         raise ValueError("Invalid name")
+    # except:
+    #     raise ValueError("Couldn't parse name")
+    # Uemail = input("Enter customer email: ")
+    # try:
+    #     if(not get_safe_value.StringCheck(Uemail)):
+    #         raise ValueError("Invalid email")
+    # except:
+    #     raise ValueError("Couldn't parse email")
+    # phone = input("Enter customer phone: ")
+    # try:
+    #     if(not get_safe_value.NumberCheck(phone)):
+    #         raise ValueError("Invalid phone, phone mus be numbers")
+    # except:
+    #     raise ValueError("Couldn't parse phone")
+    
+    # try:
+    #     new_cust_id = customer_mapper.create({
+    #     "name": name,
+    #     "email": email,
+    #     "phone": phone,
+    #     "is_vip": False,
+    #     "loyalty_points": 0.0
+    #     })
+    #     aplication_task.print_line(f"[CREATE] Customer with id={new_cust_id}")
+    # except:
+    #     raise ValueError("Couldn't Create new customer")
+
+
+
+
+
 #     ph_mapper = PointsHistoryMapper()
 #     room_mapper = RoomMapper()
 #     reservation_mapper = ReservationMapper()

@@ -14,6 +14,8 @@ class Interface:
         self.commands["help"] = self.menu_input
         self.commands["exit"] = self.exit
         self.commands["customer"] = CustomerInterface().run
+        self.commands["payment"] = PaymentInterface().run
+        self.commands["points_history"] = PointsHistoryInterface().run
         # self.commands["room"] = bankinterface.BankInterface().start
         # self.commands["reservation"] = accountinterface.AccountInterface().start
         # self.commands["payment"] = transactioninterface.TransactionInterface().start
@@ -22,13 +24,13 @@ class Interface:
         self.isrunning = False
 
     def menu_input(self):
-        print("exit: Exit")
-        print("customer: Manage customers")
-        print("room: Manage rooms")
+        print("customer:    Manage customers")
+        print("room:        Manage rooms")
         print("reservation: Manage reservations")
-        print("payment: pay")
+        print("payment:     Manages payments")
         print("transaction: Manage reservation_room")
         print("transaction: Manage LP points")
+        print("exit:        Exit")
 
     def run(self):
         self.isrunning = True
