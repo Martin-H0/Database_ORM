@@ -18,19 +18,19 @@ class Interface:
         self.commands["points_history"] = PointsHistoryInterface().run
         self.commands["room"] = RoomInterface().run
         self.commands["reservation"] = ReservationInterface().run
-        # self.commands["payment"] = transactioninterface.TransactionInterface().start
+        self.commands["reservation_room"] = ReservationRoomInterface().run
 
     def exit(self):
         self.isrunning = False
 
     def menu_input(self):
-        print("customer:    Manage customers")
-        print("room:        Manage rooms")
-        print("reservation: Manage reservations")
-        print("payment:     Manages payments")
-        print("transaction: Manage reservation_room")
-        print("transaction: Manage LP points")
-        print("exit:        Exit")
+        print("customer:         Manage customers")
+        print("room:             Manage rooms")
+        print("reservation:      Manage reservations")
+        print("payment:          Manages payments")
+        print("reservation_room: Manage reservation_room")
+        print("points_history:   Manage LP points")
+        print("exit:             Exit")
 
     def run(self):
         self.isrunning = True
