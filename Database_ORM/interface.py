@@ -17,7 +17,7 @@ class Interface:
         self.commands["payment"] = PaymentInterface().run
         self.commands["points_history"] = PointsHistoryInterface().run
         # self.commands["room"] = bankinterface.BankInterface().start
-        # self.commands["reservation"] = accountinterface.AccountInterface().start
+        self.commands["reservation"] = ReservationInterface().run
         # self.commands["payment"] = transactioninterface.TransactionInterface().start
 
     def exit(self):

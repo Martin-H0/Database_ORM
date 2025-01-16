@@ -20,12 +20,12 @@ class CustomerInterface:
         self.isrunning = False
 
     def menu_input(self):
-        print("create: Create customer")
-        print("read: Read customer")
-        print("update: Update customer")
-        print("delete: Delete customer")
+        print("create:   Create customer")
+        print("read:     Read customer")
+        print("update:   Update customer")
+        print("delete:   Delete customer")
         print("fromfile: Load customer from file")
-        print("exit: Back to Main Menu")
+        print("exit:     Back to Main Menu")
 
     def run(self):
         self.isrunning = True
