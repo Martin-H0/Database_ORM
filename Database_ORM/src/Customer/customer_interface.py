@@ -1,16 +1,26 @@
 # src/Customer/costumer_interface.py
-from src.Customer.customer_comander import CustomerCommander
+# from src.Customer.customer_comander import CustomerCommander # ReadCustomer, CreateCustomer, UpdateCustomer, DeleteCustomer, LoadCustomer
+from src.Customer.customer_comander import  CustomerCommander
 import aplication_task
 # from interface import MainInterface
 class CustomerInterface:
     def __init__(self):
         self.isrunning = True
 
-        self.commands = {}
-        self.commands["help"] = self.menu_input
-        self.commands["exit"] = self.exit
-        # self.commands["create"] = CustomerCommander().CreateCustomer
-        # self.commands["read"] = CustomerCommander().ReadCustomer
+        self.customer_commander = CustomerCommander()
+
+        self.commands = {
+            "help": self.menu_input,
+            "exit": self.exit,
+            "create": self.customer_commander.create_customer,
+            "read": self.customer_commander.read_customer,
+            "update": self.customer_commander.update_customer,
+            "delete": self.customer_commander.delete_customer,
+        }
+        # self.commands["help"] = self.menu_input
+        # self.commands["exit"] = self.exit
+        # self.commands["create"] = create_customer()
+        # self.commands["read"] = customer_mapper.read_c
         # self.commands["update"] = CustomerCommander().UpdateCustomer
         # self.commands["delete"] = CustomerCommander().DeleteCustomer
         # self.commands["fromfile"] = CustomerCommander().LoadCustomer

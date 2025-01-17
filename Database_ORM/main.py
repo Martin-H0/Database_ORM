@@ -31,69 +31,53 @@ if __name__ == "__main__":
 #     # db.connect()  # Otevře spojení
 
 #     # 2) Vytvoříme mappery
-    # customer_mapper = CustomerMapper()    #db
     
-    # aplication_task.print_title("CreateCustomer")
-    # name = input("Enter customer name: ")
-    # try:
-    #     if(not get_safe_value.StringCheck(name)):
-    #         raise ValueError("Invalid name")
-    # except:
-    #     raise ValueError("Couldn't parse name")
-    # Uemail = input("Enter customer email: ")
-    # try:
-    #     if(not get_safe_value.StringCheck(Uemail)):
-    #         raise ValueError("Invalid email")
-    # except:
-    #     raise ValueError("Couldn't parse email")
-    # phone = input("Enter customer phone: ")
-    # try:
-    #     if(not get_safe_value.NumberCheck(phone)):
-    #         raise ValueError("Invalid phone, phone mus be numbers")
-    # except:
-    #     raise ValueError("Couldn't parse phone")
-    
-    # try:
-    #     new_cust_id = customer_mapper.create({
-    #     "name": name,
-    #     "email": email,
-    #     "phone": phone,
-    #     "is_vip": False,
-    #     "loyalty_points": 0.0
-    #     })
-    #     aplication_task.print_line(f"[CREATE] Customer with id={new_cust_id}")
-    # except:
-    #     raise ValueError("Couldn't Create new customer")
 
 
 
 
 
-#     ph_mapper = PointsHistoryMapper()
-#     room_mapper = RoomMapper()
-#     reservation_mapper = ReservationMapper()
-#     payment_mapper = PaymentMapper()
-#     resroom_mapper = ReservationRoomMapper()
 
-#     view_cospoint_mapper = ViewCustomerPointsMapper()
-#     view_resdetail_mapper = ViewReservationDetailsMapper()
-#     view_invsum_mapper = ViewInvoiceSummaryMapper()
+# ph_mapper = PointsHistoryMapper()
+# room_mapper = RoomMapper()
+# reservation_mapper = ReservationMapper()
+# payment_mapper = PaymentMapper()
+# resroom_mapper = ReservationRoomMapper()
 
-#     procedure_maper = ProcedureMapper()
+# view_cospoint_mapper = ViewCustomerPointsMapper()
+# view_resdetail_mapper = ViewReservationDetailsMapper()
+# view_invsum_mapper = ViewInvoiceSummaryMapper()
+
+# procedure_maper = ProcedureMapper()
+# customer_mapper = CustomerMapper()    #
+# name = input("Zadejte jméno: ")
+# email = input("Zadejte e-mail: ")
+# phone = input("Zadejte telefonní číslo: ")
+# is_vip = input("Je VIP? (ano/ne): ").strip().lower() == "ano"
+# loyalty_points = float(input("Zadejte počet věrnostních bodů: "))
+
+# new_cust_id = customer_mapper.create({
+#     "name": name,
+#     "email": email,
+#     "phone": phone,
+#     "is_vip": is_vip,
+#     "loyalty_points": loyalty_points
+# })
+
+# print(f"[CREATE] Zákazník vytvořen s ID={new_cust_id}")
 
 
 
-
-#        # 4) READ
-#     # cust_data = view_cospoint_mapper.read_all()
-#     # for e in cust_data:
-#     #     print (e)
-#     # cust_data = view_invsum_mapper.read_all()
-#     # for e in cust_data:
-#     #     print (e)
-#     # cust_data = view_resdetail_mapper.read_all()
-#     # for e in cust_data:
-#     #     print (e)
+    # 4) READ
+    # cust_data = view_cospoint_mapper.read_all()
+    # for e in cust_data:
+    #     print (e)
+    # cust_data = view_invsum_mapper.read_all()
+    # for e in cust_data:
+    #     print (e)
+    # cust_data = view_resdetail_mapper.read_all()
+    # for e in cust_data:
+    #     print (e)
 
 #     # # CALL p5evede od customera 1 100 bodu customerovi 2
 #     # procedure_maper.call_transfer_points(1, 2, 100)
@@ -119,23 +103,23 @@ if __name__ == "__main__":
     # print(f"[CREATE] Customer with id={new_cust_id}")
 
 
-#     # # 4) READ
+    # 4) READ
+# cust_data = customer_mapper.read(50)
+# print("[READ] Loaded customer:", cust_data)
+
+    # # 5) UPDATE
+    # updated_rows = customer_mapper.update(new_cust_id, {
+    #     "phone": "000111222",
+    #     "loyalty_points": 99.9
+    # })
+    # print("[UPDATE] Updated rows (customer):", updated_rows)
+
 #     # cust_data = customer_mapper.read(new_cust_id)
 #     # print("[READ] Loaded customer:", cust_data)
 
-#     # # 5) UPDATE
-#     # updated_rows = customer_mapper.update(new_cust_id, {
-#     #     "phone": "000111222",
-#     #     "loyalty_points": 99.9
-#     # })
-#     # print("[UPDATE] Updated rows (customer):", updated_rows)
-
-#     # cust_data = customer_mapper.read(new_cust_id)
-#     # print("[READ] Loaded customer:", cust_data)
-
-#     # # 6) DELETE (pokud chcete vyzkoušet)
-#     # del_rows = customer_mapper.delete(new_cust_id)
-#     # print("[DELETE] Deleted rows (customer):", del_rows)
+    # # 6) DELETE (pokud chcete vyzkoušet)
+    # del_rows = customer_mapper.delete(new_cust_id)
+    # print("[DELETE] Deleted rows (customer):", del_rows)
 
 #     # 7) Vyzkoušíme cizí klíč (např. points_history) => customer_id musí existovat
 #     # ph_id = ph_mapper.create({
