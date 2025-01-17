@@ -29,3 +29,9 @@ přes terminal  pip instal venv a mysql-connector-python
 pokud na tom školním NAS pc není python tak stáhni i ten
 krok 4
 spust main.py   bud v editoru (doporučuji VSC) nebo přes cmd
+
+
+
+
+
+ofsdaoikc jdsfhizce
