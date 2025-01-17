@@ -137,7 +137,7 @@ class CustomerCommander:
         aplication_task.print_line("csv form:  name,email,phone,is_vip,loyalty_points")
         aplication_task.print_line("Example:   John Doe,john@example.com,123456789,true,50.0")
 
-        file_path = "customers.csv"
+        file_path = "./Database_ORM/src/Customer/customers.csv"
         if not os.path.exists(file_path):
             print("❌ Error: customers.csv file not found.")
             return

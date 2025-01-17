@@ -26,7 +26,7 @@ class ReservationInterface:
         print("read:     Read reservation")
         print("update:   Update reservation")
         print("delete:   Delete reservation")
-        print("fromfile: Load reservation from file")
+        # print("fromfile: Load reservation from file")
         print("exit:     Back to Main Menu")
 
     def run(self):

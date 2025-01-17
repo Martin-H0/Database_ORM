@@ -28,7 +28,7 @@ class RoomInterface:
         print("read:     Read room")
         print("update:   Update room")
         print("delete:   Delete room")
-        print("fromfile: Load room from file")
+        # print("fromfile: Load room from file")
         print("exit:     Back to Main Menu")
 
     def run(self):

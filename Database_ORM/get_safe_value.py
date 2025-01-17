@@ -3,25 +3,39 @@ import re
 from datetime import datetime
 import math
 
-def StringCheck(value,lenght=30,specialchar = None):
+
+def StringCheck(value,lenght,specialchar = ""):
     if(len(value)>lenght):
         return False
-    if(not re.findall(r"^[A-Za-z0-9]*$",value)):
-        return False
-    if(specialchar and re.findall(f"{specialchar}",value)):
+    specialchar = re.escape(specialchar)
+    if(not re.findall(rf"^[A-Za-z0-9 áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ{specialchar}]*$",value)):
         return False
     return True
 
-def NumberCheck(value,lenght = math.inf,specialchar = None,negative = True):
+def NumberCheck(value,lenght = math.inf,decimal = True,negative = True):
     if(len(value)>lenght):
         return False
-    if(not re.findall(r"^[-0-9]*$",value)):
+    try:
+        float_value = float(value)
+        if(not decimal):
+            if("." in value):
+                raise ValueError
+    except ValueError:
         return False
-    if specialchar and re.search(re.escape(specialchar), value):
-        return False
-    if(negative == False and float(value) <0):
+    if(not negative and float(value) <0):
         return False
     return True
+# def NumberCheck(value,lenght = math.inf,specialchar = None,negative = True):
+#     if(len(value)>lenght):
+#         return False
+#     if(not re.findall(r"^[-0-9]*$",value)):
+#         return False
+#     if specialchar and re.search(re.escape(specialchar), value):
+#         return False
+#     if(negative == False and float(value) <0):
+#         return False
+#     return True
+
 
 def DateCheck(value,specialchar = "-"):
     date_format="%Y-%m-%d"
@@ -32,6 +46,15 @@ def DateCheck(value,specialchar = "-"):
         return False
     else:
         return True
+# def DateCheck(value,specialchar = "-"):
+#     date_format="%Y-%m-%d"
+#     date_format = date_format.replace("-", specialchar)
+#     try:
+#         datetime.strptime(value, date_format)
+#     except ValueError:
+#         return False
+#     else:
+#         return True
     
     
 def BoolCheck(value,true,false):
