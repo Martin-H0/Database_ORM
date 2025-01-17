@@ -1,3 +1,5 @@
+import csv
+import os
 from database.generic_mapper import GenericMapper
 from models.room import RoomMapper
 import get_safe_value
@@ -163,3 +165,62 @@ class RoomCommander:
             print(f"✅ [DELETE] Room ID {room_id} deleted successfully.")
         else:
             print(f"❌ [DELETE] Failed to delete room ID {room_id}.")
+
+    def load_rooms_from_file(self):
+        """Loads rooms from a CSV file with validation."""
+        aplication_task.print_title("LOAD ROOMS FROM FILE")
+        aplication_task.print_line("create rooms.csv,   path: Database_ORM/src/Customer/rooms.csv" )
+        aplication_task.print_line("csv form:  room_number,capacity,price_per_night,room_type")
+        aplication_task.print_line("Example:   101,3,3000,STANDARD")
+
+        file_path = "./Database_ORM/src/Customer/rooms.csv"
+        if not os.path.exists(file_path):
+            print("❌ Error: rooms.csv file not found.")
+            return
+
+        with open(file_path, mode="r", encoding="utf-8") as file:
+            reader = csv.DictReader(file)
+            count = 0
+            skipped = 0
+
+            for row in reader:
+                room_number = row["room_number"].strip()
+                capacity = row["capacity"].strip()
+                price_per_night = row["price_per_night"].strip()
+                room_type = row["room_type"].strip()
+
+                # Validate data
+                if not get_safe_value.StringCheck(room_number, 10):
+                    print(f"⚠️ Skipping invalid name: {room_number}")
+                    skipped += 1
+                    continue
+
+
+                if not get_safe_value.NumberCheck(capacity, 30, negative=False):
+                    print(f"⚠️ Skipping invalid capacity number: {capacity}")
+                    skipped += 1
+                    continue
+
+                if not get_safe_value.NumberCheck(price_per_night, 30, negative=False):
+                    print(f"⚠️ Skipping invalid price_per_night number: {price_per_night}")
+                    skipped += 1
+                    continue
+
+                if not get_safe_value.EnumCheck(room_type, ["STANDARD", "DELUXE", "SUITE"]):
+                    print(f"⚠️ Skipping invalid room_type: {room_type}")
+                    skipped += 1
+                    continue
+
+                # Convert values
+                price_per_night = float(price_per_night)
+
+                # Create room
+                new_cust_id = self.room_mapper.create({
+                    "name": room_number,
+                    "capacity": capacity,
+                    "price_per_night": price_per_night,
+                    "room_type": room_type
+                })
+                count += 1
+
+        print(f"✅ [LOAD] {count} rooms loaded from file. ⚠️ {skipped} entries skipped due to errors.")

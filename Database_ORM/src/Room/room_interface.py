@@ -15,6 +15,7 @@ class RoomInterface:
             "read": self.room_commander.read_room,
             "update": self.room_commander.update_room,
             "delete": self.room_commander.delete_room,
+            "fromfile": self.room_commander.load_rooms_from_file,
 
         }
         # self.commands["fromfile"] = RoomCommander().LoadRoom
@@ -28,7 +29,7 @@ class RoomInterface:
         print("read:     Read room")
         print("update:   Update room")
         print("delete:   Delete room")
-        # print("fromfile: Load room from file")
+        print("fromfile: Load room from file")
         print("exit:     Back to Main Menu")
 
     def run(self):

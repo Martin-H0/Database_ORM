@@ -1,0 +1,26 @@
+
+
+krok 1
+v MySQL si nový Connection (udaje pak vypln do config.json)
+	config.json	
+		{
+			"database":{
+				"host":"IP ADRESA",
+				"port":PORT,
+				"user":"USERNAME",
+				"password":"TVOJEH ESLO",
+				"database":"NAZEV DB"
+			},
+
+			"logging":{
+				"level":"ERROR",
+				"log_file":"app.log"
+			}
+		}
+krok 2
+najdi si složku v MySQL v aplikaci MySQL si spustíš connection který jsi vytvořil, vytvoř DB a do ní executneš nejprve vše z Hotel.sql a pak i Insert.sql 
+	(zkontroluj že se uspěšně vytvořili tably a dali se do nich data)
+
+
+krok 3 
+spust main.py   bud v editoru (doporučuji VSC) nebo přes cmd

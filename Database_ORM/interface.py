@@ -29,6 +29,7 @@ class Interface:
         print("reservation:      Manage reservations")
         print("payment:          Manages payments")
         print("reservation_room: Manage reservation_room")
+        print("report:           Report")
         # print("points_history:   Manage LP points")
         print("exit:             Exit")
 
