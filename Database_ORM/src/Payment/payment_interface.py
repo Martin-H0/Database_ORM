@@ -7,14 +7,17 @@ class PaymentInterface:
     def __init__(self):
         self.isrunning = True
 
-        self.commands = {}
-        self.commands["help"] = self.menu_input
-        self.commands["exit"] = self.exit
-        # self.commands["create"] = PaymentCommander().CreatePayment
-        # self.commands["read"] = PaymentCommander().ReadPayment
-        # self.commands["update"] = PaymentCommander().UpdatePayment
-        # self.commands["delete"] = PaymentCommander().DeletePayment
-        # self.commands["fromfile"] = PaymentCommander().LoadPayment
+        self.payment_commander = PaymentCommander()
+
+        self.commands = {
+            "help": self.menu_input,
+            "exit": self.exit,
+            "create": self.payment_commander.create_payment,
+            "read": self.payment_commander.read_payment,
+            # "update": self.payment_commander.update_payment,
+            # "delete": self.payment_commander.delete_payment,
+        }
+
 
 
     def exit(self):
@@ -23,9 +26,6 @@ class PaymentInterface:
     def menu_input(self):
         print("create:   Create payment")
         print("read:     Read payment")
-        print("update:   Update payment")
-        print("delete:   Delete payment")
-        print("fromfile: Load payment from file")
         print("exit:     Back to Main Menu")
 
     def run(self):

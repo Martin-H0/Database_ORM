@@ -4,7 +4,6 @@ import json
 from database.generic_mapper import GenericMapper
 import get_safe_value
 import aplication_task
-# src/Customer/customer_commander.py
 from models.customer import CustomerMapper
 import logging
 
@@ -15,15 +14,48 @@ class CustomerCommander:
         self.customer_mapper = CustomerMapper()
 
     def create_customer(self):
-        """Vytvoří nového customer na základě vstupu od uživatele."""
+        """Creates a new customer based on user input with validation."""
         aplication_task.print_title("CREATE CUSTOMER")
-        aplication_task.print_line("\n Enter details for the new customer::")
-        name = input ("Name: ")
-        email = input("E-mail: ")
-        phone = input("Phone: ")
-        is_vip = input("Is VIP? (yes/no): ").strip().lower() == "yes"
-        loyalty_points = float(input("Loyalty points: "))
+        aplication_task.print_line("\nEnter details for the new customer:")
 
+        # Validate name (only letters and numbers, max length 50)
+        while True:
+            name = input("Name: ").strip()
+            if get_safe_value.StringCheck(name, lenght=50):
+                break
+            print("❌ Invalid input. Name can only contain letters and numbers (max 50 characters).")
+
+        # Validate email (basic format check)
+        while True:
+            email = input("E-mail: ").strip()
+            if "@" in email and "." in email and len(email) < 100:
+                break
+            print("❌ Invalid input. Enter a valid email address.")
+
+        # Validate phone number (only numbers, max length 15)
+        while True:
+            phone = input("Phone: ").strip()
+            if get_safe_value.NumberCheck(phone, lenght=15, negative=False):
+                break
+            print("❌ Invalid input. Phone number can only contain digits (max 15 characters).")
+
+        # Validate VIP status (yes/no)
+        while True:
+            is_vip = input("Is VIP? (yes/no): ").strip().lower()
+            if get_safe_value.BoolCheck(is_vip, "yes", "no"):
+                is_vip = is_vip == "yes"
+                break
+            print("❌ Invalid input. Enter 'yes' or 'no'.")
+
+        # Validate loyalty points (must be a positive number)
+        while True:
+            loyalty_points = input("Loyalty points: ").strip()
+            if get_safe_value.NumberCheck(loyalty_points, negative=False):
+                loyalty_points = float(loyalty_points)
+                break
+            print("❌ Invalid input. Loyalty points must be a positive number.")
+
+        # Create customer
         new_cust_id = self.customer_mapper.create({
             "name": name,
             "email": email,
