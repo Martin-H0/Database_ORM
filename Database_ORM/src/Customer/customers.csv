@@ -1,4 +1,4 @@
 name,email,phone,is_vip,loyalty_points
 John Doe,john@example.com,123456789,true,50.5
-InvalidName,!bademail.com,123abc,true,30  <-- ⚠️ Tento řádek bude přeskočen
+InvalidName,!bademail.com,123abc,true,30  <-- ⚠️ 
 Jane Doe,jane@example.com,987654321,false,20.0

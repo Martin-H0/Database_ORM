@@ -5,6 +5,7 @@ from src.Points_History.points_history_interface import PointsHistoryInterface
 from src.Reservation.reservation_interface import ReservationInterface
 from src.Reservation_Room.reservation_room_interface import ReservationRoomInterface
 from src.Room.room_interface import RoomInterface
+from src.Report.report_interface import ReportInterface
 import aplication_task
 class Interface:
     def __init__(self):
@@ -19,6 +20,7 @@ class Interface:
         self.commands["room"] = RoomInterface().run
         self.commands["reservation"] = ReservationInterface().run
         self.commands["reservation_room"] = ReservationRoomInterface().run
+        self.commands["report"] = ReportInterface().run
 
     def exit(self):
         self.isrunning = False

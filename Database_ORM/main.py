@@ -53,6 +53,17 @@ if __name__ == "__main__":
 # view_resdetail_mapper = ViewReservationDetailsMapper()
 # view_invsum_mapper = ViewInvoiceSummaryMapper()
 
+# cust_data = view_cospoint_mapper.read_all()
+# for e in cust_data:
+#     print (e)
+# cust_data = view_invsum_mapper.read_all()
+# for e in cust_data:
+#     print (e)
+# cust_data = view_resdetail_mapper.read_all()
+# for e in cust_data:
+#     print (e)
+
+
 # procedure_maper = ProcedureMapper()
 # customer_mapper = CustomerMapper()    #
 # name = input("Zadejte jméno: ")
