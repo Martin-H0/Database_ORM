@@ -16,6 +16,7 @@ class CustomerInterface:
             "read": self.customer_commander.read_customer,
             "update": self.customer_commander.update_customer,
             "delete": self.customer_commander.delete_customer,
+            "fromfile": self.customer_commander.load_customers_from_file,
         }
         # self.commands["help"] = self.menu_input
         # self.commands["exit"] = self.exit
