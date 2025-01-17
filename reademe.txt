@@ -23,4 +23,9 @@ najdi si složku v MySQL v aplikaci MySQL si spustíš connection který jsi vyt
 
 
 krok 3 
+přes terminal  pip instal venv a mysql-connector-python
+	pokud nevíš jak otevři dokumentace.md a najdi si bod 8, kde je instalace podrobně popsaná
+
+pokud na tom školním NAS pc není python tak stáhni i ten
+krok 4
 spust main.py   bud v editoru (doporučuji VSC) nebo přes cmd
