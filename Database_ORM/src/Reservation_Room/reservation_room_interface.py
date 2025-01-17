@@ -6,14 +6,16 @@ class ReservationRoomInterface:
     def __init__(self):
         self.isrunning = True
 
-        self.commands = {}
-        self.commands["help"] = self.menu_input
-        self.commands["exit"] = self.exit
-        # self.commands["create"] = ReservationRoomCommander().CreateReservationRoom
-        # self.commands["read"] = ReservationRoomCommander().ReadReservationRoom
-        # self.commands["update"] = ReservationRoomCommander().UpdateReservationRoom
-        # self.commands["delete"] = ReservationRoomCommander().DeleteReservationRoom
-        # self.commands["fromfile"] = ReservationRoomCommander().LoadReservationRoom
+        self.reservation_room_commander = ReservationRoomCommander()
+
+        self.commands = {
+            "help": self.menu_input,
+            "exit": self.exit,
+            "create": self.reservation_room_commander.create_reservation_room,
+            "read": self.reservation_room_commander.read_reservation_room,
+            "update": self.reservation_room_commander.update_reservation_room,
+            "delete": self.reservation_room_commander.delete_reservation_room,     
+        }
 
 
     def exit(self):
@@ -24,7 +26,6 @@ class ReservationRoomInterface:
         print("read:     Read reservation_room")
         print("update:   Update reservation_room")
         print("delete:   Delete reservation_room")
-        print("fromfile: Load reservation_room from file")
         print("exit:     Back to Main Menu")
 
     def run(self):
