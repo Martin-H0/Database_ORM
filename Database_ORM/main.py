@@ -17,9 +17,14 @@ from report.view_invoice_summary import ViewInvoiceSummaryMapper
 from database.procedure_mapper import ProcedureMapper
 
 from interface import  Interface
+import logging
+# from src.utils import setup_logging, readconfiglogging
 
 
 if __name__ == "__main__":
+
+    # setup_logging()
+    # logging.ERROR("funguj")
     i = Interface()
     i.run()
 

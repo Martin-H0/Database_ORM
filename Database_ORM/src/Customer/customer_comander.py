@@ -6,6 +6,7 @@ import get_safe_value
 import aplication_task
 # src/Customer/customer_commander.py
 from models.customer import CustomerMapper
+import logging
 
 class CustomerCommander:
     """Spravuje CRUD operace pro customer pomocí CustomerMapperu."""
