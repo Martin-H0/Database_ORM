@@ -15,7 +15,7 @@ class Interface:
         self.commands["exit"] = self.exit
         self.commands["customer"] = CustomerInterface().run
         self.commands["payment"] = PaymentInterface().run
-        self.commands["points_history"] = PointsHistoryInterface().run
+        # self.commands["points_history"] = PointsHistoryInterface().run
         self.commands["room"] = RoomInterface().run
         self.commands["reservation"] = ReservationInterface().run
         self.commands["reservation_room"] = ReservationRoomInterface().run
@@ -29,7 +29,7 @@ class Interface:
         print("reservation:      Manage reservations")
         print("payment:          Manages payments")
         print("reservation_room: Manage reservation_room")
-        print("points_history:   Manage LP points")
+        # print("points_history:   Manage LP points")
         print("exit:             Exit")
 
     def run(self):

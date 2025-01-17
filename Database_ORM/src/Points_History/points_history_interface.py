@@ -6,25 +6,20 @@ class PointsHistoryInterface:
     def __init__(self):
         self.isrunning = True
 
-        self.commands = {}
-        self.commands["help"] = self.menu_input
-        self.commands["exit"] = self.exit
-        # self.commands["create"] = PointsHistoryCommander().CreatePointsHistory
-        # self.commands["read"] = PointsHistoryCommander().ReadPointsHistory
-        # self.commands["update"] = PointsHistoryCommander().UpdatePointsHistory
-        # self.commands["delete"] = PointsHistoryCommander().DeletePointsHistory
-        # self.commands["fromfile"] = PointsHistoryCommander().LoadPointsHistory
+        self.points_history_mapper = PointsHistoryCommander()
+
+        self.commands = {
+                        "help": self.menu_input,
+            "exit": self.exit,
+            "read": self.points_history_mapper.read_points_history,
+        }
 
 
     def exit(self):
         self.isrunning = False
 
     def menu_input(self):
-        print("create:   Create points_history")
         print("read:     Read points_history")
-        print("update:   Update points_history")
-        print("delete:   Delete points_history")
-        print("fromfile: Load points_history from file")
         print("exit:     Back to Main Menu")
 
     def run(self):

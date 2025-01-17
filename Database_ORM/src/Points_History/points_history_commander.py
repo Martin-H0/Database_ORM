@@ -3,22 +3,29 @@ from models.points_history import PointsHistoryMapper
 import get_safe_value
 import aplication_task
 
-
 class PointsHistoryCommander:
+    """Handles reading of points history using PointsHistoryMapper."""
 
-    points_history_mapper = PointsHistoryMapper()
-    
     def __init__(self):
-        # self.model_command = model_command
-        self.generic_mapper = GenericMapper(self)
+        self.points_history_mapper = PointsHistoryMapper()
 
-    def CreatePointsHistory(self):
-        aplication_task.print_title("CreatePointsHistory")
-    def ReadPointsHistory(self):
-        aplication_task.print_title("ReadPointsHistory")
-    def UpdatePointsHistory(self):
-        aplication_task.print_title("UpdatePointsHistory")
-    def DeletePointsHistory(self):
-        aplication_task.print_title("DeletePointsHistory")
-    def LoadPointsHistory(self):
-        aplication_task.print_title("LoadFromFilePointsHistory")
+    def read_points_history(self):
+        """Reads and displays points history for a specific customer."""
+        aplication_task.print_title("READ POINTS HISTORY")
+
+        # Validate customer ID input
+        while True:
+            customer_id =  ("Enter Customer ID: ").strip()
+            if get_safe_value.NumberCheck(customer_id, negative=False):
+                customer_id = int(customer_id)
+                break
+            print("❌ Invalid input. Customer ID must be a positive number.")
+
+        # Fetch points history
+        points_data = self.points_history_mapper.read(customer_id)
+        if points_data:
+            print(f"✅ [READ] Points History for Customer ID {customer_id}:")
+            for record in points_data:
+                print(f"- ID: {record['id']}, Amount: {record['ammount']}, Description: {record['description']}")
+        else:
+            print(f"❌ No points history found for Customer ID {customer_id}")
