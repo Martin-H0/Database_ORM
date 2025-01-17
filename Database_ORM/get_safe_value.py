@@ -33,6 +33,7 @@ def DateCheck(value,specialchar = "-"):
     else:
         return True
     
+    
 def BoolCheck(value,true,false):
     if value == true or value == false:
         return True
