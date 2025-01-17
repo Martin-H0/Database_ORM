@@ -6,13 +6,17 @@ class RoomInterface:
     def __init__(self):
         self.isrunning = True
 
-        self.commands = {}
-        self.commands["help"] = self.menu_input
-        self.commands["exit"] = self.exit
-        # self.commands["create"] = RoomCommander().CreateRoom
-        # self.commands["read"] = RoomCommander().ReadRoom
-        # self.commands["update"] = RoomCommander().UpdateRoom
-        # self.commands["delete"] = RoomCommander().DeleteRoom
+        self.room_commander = RoomCommander()
+
+        self.commands = {
+            "help": self.menu_input,
+            "exit": self.exit,
+            "create": self.room_commander.create_room,
+            "read": self.room_commander.read_room,
+            "update": self.room_commander.update_room,
+            "delete": self.room_commander.delete_room,
+
+        }
         # self.commands["fromfile"] = RoomCommander().LoadRoom
 
 
