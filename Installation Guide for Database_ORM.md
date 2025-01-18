@@ -130,3 +130,9 @@ If the issue persists, check that you have a compatible Python version installed
 
 Now you're ready to use Database_ORM! 🚀
 
+
+## 1 try easy way
+
+```sh
+.\venv\Scripts\pip.exe install -r requirements.txt
+```
