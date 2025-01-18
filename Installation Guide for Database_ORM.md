@@ -3,6 +3,7 @@
 ## 1. Setting Up a Virtual Environment
 
 It is recommended to use a virtual environment to manage dependencies.
+It is recommended to skip points one to seven
 
 ### 1.1 Creating the Virtual Environment
 Open a terminal or command prompt and navigate to the project folder:
@@ -15,7 +16,7 @@ python -m venv venv
 ```
 
 ### 1.2 Activating the Virtual Environment
-#### Windows:
+#### Windows:   (skip on VSC)
 ```sh
 venv\Scripts\activate
 ```
@@ -133,6 +134,11 @@ Now you're ready to use Database_ORM! 🚀
 
 ## 1 try easy way
 
+### 1.1
+```sh
+python -m venv venv
+```
+### 1.2
 ```sh
 .\venv\Scripts\pip.exe install -r requirements.txt
 ```
