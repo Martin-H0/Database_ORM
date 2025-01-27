@@ -1,0 +1,14 @@
+{
+    "database":{
+        "host":"18.199.158.215",
+        "port":3306,
+        "user":"hornych1app",
+        "password":"your - password", 
+        "database":"Hotel"
+    },
+
+    "logging":{
+        "level":"ERROR",
+        "log_file":"app.log"
+    }
+}
